@@ -6,13 +6,15 @@
 }
 
 .todoListContainer {
-    width: 50vw;
+    width: 25vw;
     margin: 0 auto;
 
 }
 
 .todoItem {
     padding: 1rem;
+    cursor: pointer;
+    
 }
 
 .todoItem:nth-child(even) {
@@ -25,4 +27,23 @@
 
 .todoItem h2, p {
     margin: 0 auto;
+    text-align: left;
+}
+
+.completed {
+    color: #CCCCCC;
+    background-color: white;
+}
+
+.taskName::before, .taskName::after {
+    color: black;
+    margin-right: 1rem;
+}
+
+.taskName::before {
+    content: "☐";
+}
+
+.completed .taskName::before {
+    content: "☑";
 }

@@ -33,7 +33,7 @@ class App extends React.Component {
         {
           task: 'Task Four',
           id: 4,
-          completed: false
+          completed: true
         },
         {
           task: 'Task 5',
@@ -47,14 +47,47 @@ class App extends React.Component {
         },
 
       ]
+    }
   }
-}
+
+  toggleDone = (id) => {
+
+    this.setState(
+
+      // find the item that was clicked on and toggle its completion status
+      this.state.todoList = this.state.todoList.map(item => {
+
+        if (item.id === id)
+          {
+
+            // toggle CSS class to indicate that the task is completed
+            document.getElementById("task" + id).classList.toggle("completed");
+            
+            // console.log(item, item.completed, !item.completed)
+
+            return {
+              ...item,
+              completed: !item.completed
+            }
+          }
+        else
+          {
+            return item;
+          }
+        }
+
+      )
+
+    )
+
+
+  }
 
   render() {
     return (
       <div className="todoListContainer">
         <h1>Todo List</h1>
-        <TodoList todoList={this.state.todoList} />
+        <TodoList todoList={this.state.todoList} toggleDone={this.toggleDone} />
       </div>
     );
   }
