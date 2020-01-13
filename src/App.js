@@ -1,5 +1,6 @@
 import React from 'react';
-import TodoList from "./components/TodoComponents/TodoList"
+import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
 
 import "./app.css";
 
@@ -85,10 +86,15 @@ class App extends React.Component {
 
   render() {
     return (
+      <>
+      <h1>Todo List</h1>
       <div className="todoListContainer">
-        <h1>Todo List</h1>
-        <TodoList todoList={this.state.todoList} toggleDone={this.toggleDone} />
+        <div className="todoList">
+          <TodoList todoList={this.state.todoList} toggleDone={this.toggleDone} />
+        </div>
+        <TodoForm />
       </div>
+      </>
     );
   }
 }
