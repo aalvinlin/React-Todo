@@ -1,0 +1,28 @@
+* {
+    font-family: Arial;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+.todoListContainer {
+    width: 50vw;
+    margin: 0 auto;
+
+}
+
+.todoItem {
+    padding: 1rem;
+}
+
+.todoItem:nth-child(even) {
+    background-color: #EEEEEE;
+}
+
+.todoItem:nth-child(odd) {
+    background-color: #DDDDDD;
+}
+
+.todoItem h2, p {
+    margin: 0 auto;
+}
