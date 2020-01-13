@@ -6,27 +6,22 @@ class TodoForm extends React.Component {
 
         super();
         this.state = {
-            todoToAdd: ""
+            userInput: "a"
         }
 
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-    }
-
+    
+        this.props.addTodo(this.state.userInput);
+      }
+    
     handleChange = (event) => {
-
-        this.state.todoToAdd = event.target.value;
-
-    }
-
-    handleRemove = (event) => {
-
+        this.setState({userInput: event.target.value});
     }
 
     render() {
-
 
         return (
 
@@ -34,11 +29,11 @@ class TodoForm extends React.Component {
 
                 <input type="text" name="todoToAdd" placeholder="new task name" onChange={this.handleChange} value={this.state.todoToAdd} />
 
-                <button type="submit" name="Add">Add</button>
+                <button type="submit" name="Add" onClick={() => this.props.addTodo(this.state.userInput)}>Add</button>
 
                 <br />
                 
-                <button name="Clear Completed" onClick={this.handleRemove}>Clear Completed</button>
+                <button name="Clear Completed" onClick={this.props.handleRemove}>Clear Completed</button>
 
             </form>
 

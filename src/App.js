@@ -56,7 +56,7 @@ class App extends React.Component {
     this.setState(
 
       // find the item that was clicked on and toggle its completion status
-      this.state.todoList = this.state.todoList.map(item => {
+      this.setState({todoList: this.state.todoList.map(item => {
 
         if (item.id === id)
           {
@@ -76,12 +76,32 @@ class App extends React.Component {
             return item;
           }
         }
-
       )
-
+      }
     )
+    )
+  }
 
+  removeCompleted = () => {
 
+    console.log("Current todo list: ", this.state.todoList);
+
+    console.log(this.state.todoList.filter(item => !item.completed));
+
+    this.setState({todoList: this.state.todoList.filter(item => !item.completed)});
+
+  }
+
+  addTodo = (todoText) => {
+
+    // newTodoList = 
+
+    this.setState(
+      { todoList: [{
+          task: todoText,
+          id: Date().now,
+          completed: false
+        }, ...this.state.todoList] })
   }
 
   render() {
@@ -92,7 +112,7 @@ class App extends React.Component {
         <div className="todoList">
           <TodoList todoList={this.state.todoList} toggleDone={this.toggleDone} />
         </div>
-        <TodoForm />
+        <TodoForm todoList={this.state.todoList} addTodo={this.addTodo} removeCompleted={this.removeCompleted} />
       </div>
       </>
     );

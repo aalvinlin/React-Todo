@@ -11,7 +11,7 @@ class Todo extends React.Component {
         console.log(this.props.todoItem);
 
         return (
-            <div className="todoItem" id={"task" + this.props.todoItem.id} onClick={() => this.props.toggleDone(this.props.todoItem.id)}>
+            <div className="todoItem" key={this.props.todoItem.id} id={"task" + this.props.todoItem.id} onClick={() => this.props.toggleDone(this.props.todoItem.id)}>
                 <h2 className="taskName">{this.props.todoItem.task}</h2>
                 {/* <p>Done? {this.props.todoItem.completed ? "yes" : "no"}</p> */}
             </div>
