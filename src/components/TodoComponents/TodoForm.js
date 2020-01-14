@@ -5,16 +5,13 @@ class TodoForm extends React.Component {
     constructor() {
 
         super();
-        this.state = {
-            userInput: "a"
-        }
-
+        this.state = { userInput: "" }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
     
-        this.props.addTodo(this.state.userInput);
+        this.setState({ userInput: ""});
       }
     
     handleChange = (event) => {
@@ -27,13 +24,13 @@ class TodoForm extends React.Component {
 
             <form name="todoForm" onSubmit={this.handleSubmit}>
 
-                <input type="text" name="todoToAdd" placeholder="new task name" onChange={this.handleChange} value={this.state.todoToAdd} />
+                <input type="text" name="todoToAdd" placeholder="new task name" onChange={this.handleChange} value={this.state.userInput} />
 
                 <button type="submit" name="Add" onClick={() => this.props.addTodo(this.state.userInput)}>Add</button>
 
                 <br />
                 
-                <button name="Clear Completed" onClick={this.props.handleRemove}>Clear Completed</button>
+                <button name="Clear Completed" onClick={this.props.removeCompleted}>Clear Completed</button>
 
             </form>
 

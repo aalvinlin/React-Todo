@@ -34,7 +34,7 @@ class App extends React.Component {
         {
           task: 'Task Four',
           id: 4,
-          completed: true
+          completed: false
         },
         {
           task: 'Task 5',
@@ -85,8 +85,7 @@ class App extends React.Component {
   removeCompleted = () => {
 
     console.log("Current todo list: ", this.state.todoList);
-
-    console.log(this.state.todoList.filter(item => !item.completed));
+    console.log("Filtered todo list: ", this.state.todoList.filter(item => !item.completed));
 
     this.setState({todoList: this.state.todoList.filter(item => !item.completed)});
 
@@ -94,17 +93,30 @@ class App extends React.Component {
 
   addTodo = (todoText) => {
 
-    // newTodoList = 
+    // if (todoText === "")
+    //   { return; }
 
     this.setState(
-      { todoList: [{
-          task: todoText,
-          id: Date().now,
-          completed: false
-        }, ...this.state.todoList] })
+      { todoList:
+        [
+          {
+            task: todoText,
+            id: Date.now(),
+            completed: false
+          },
+          
+          ...this.state.todoList
+        ]
+      }
+    )
+
+
   }
 
   render() {
+
+    console.log("Starting render...")
+
     return (
       <>
       <h1>Todo List</h1>
