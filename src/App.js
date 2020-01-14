@@ -45,10 +45,13 @@ class App extends React.Component {
           task: 'Task 6',
           id: 6,
           completed: false
-        },
+        }
 
-      ]
+      ],
+      
+      todoListToDisplay: []
     }
+
   }
 
   toggleDone = (id) => {
@@ -84,17 +87,15 @@ class App extends React.Component {
 
   removeCompleted = () => {
 
-    console.log("Current todo list: ", this.state.todoList);
-    console.log("Filtered todo list: ", this.state.todoList.filter(item => !item.completed));
-
     this.setState({todoList: this.state.todoList.filter(item => !item.completed)});
+    this.setState({todoListToDisplay: this.todoList})
 
   }
 
   addTodo = (todoText) => {
 
-    // if (todoText === "")
-    //   { return; }
+    if (todoText === "")
+      { return; }
 
     this.setState(
       { todoList:
@@ -110,6 +111,22 @@ class App extends React.Component {
       }
     )
 
+    this.setState({todoListToDisplay: this.todoList})
+  }
+
+  filterTasks = (filterText) => {
+
+    if (filterText === "")
+      {
+        this.setState({todoListToDisplay: this.state.todoList});
+      }
+    else {
+
+      this.setState({todoListToDisplay:       
+        this.state.todoList.filter(item => item.task.toLowerCase().match(filterText.toLowerCase()))
+      })
+
+    }
 
   }
 
@@ -117,14 +134,25 @@ class App extends React.Component {
 
     console.log("Starting render...")
 
+    // workaround for first render, before the user has done any filtering and so todoListToDisplay is an empty array
+    // can't set state here in render method
+    let tasksToRender = this.state.todoListToDisplay;
+
+    console.log(tasksToRender)
+
+    if (tasksToRender === undefined || tasksToRender.length === 0)
+    {
+      tasksToRender = this.state.todoList;
+    }
+
     return (
       <>
       <h1>Todo List</h1>
       <div className="todoListContainer">
         <div className="todoList">
-          <TodoList todoList={this.state.todoList} toggleDone={this.toggleDone} />
+          <TodoList todoList={tasksToRender} toggleDone={this.toggleDone} />
         </div>
-        <TodoForm todoList={this.state.todoList} addTodo={this.addTodo} removeCompleted={this.removeCompleted} />
+        <TodoForm todoList={this.state.todoList} addTodo={this.addTodo} removeCompleted={this.removeCompleted} filterTasks={this.filterTasks} />
       </div>
       </>
     );

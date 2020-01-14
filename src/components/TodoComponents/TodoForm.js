@@ -5,17 +5,17 @@ class TodoForm extends React.Component {
     constructor() {
 
         super();
-        this.state = { userInput: "" }
+        this.state = { todoToAdd: "", filterText: "" }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
     
-        this.setState({ userInput: ""});
+        this.setState({ todoToAdd: ""});
       }
     
     handleChange = (event) => {
-        this.setState({userInput: event.target.value});
+        this.setState({[event.target.name]: event.target.value});
     }
 
     render() {
@@ -24,13 +24,27 @@ class TodoForm extends React.Component {
 
             <form name="todoForm" onSubmit={this.handleSubmit}>
 
-                <input type="text" name="todoToAdd" placeholder="new task name" onChange={this.handleChange} value={this.state.userInput} />
+                <p className="inputDescription">Add a new task</p>
 
-                <button type="submit" name="Add" onClick={() => this.props.addTodo(this.state.userInput)}>Add</button>
+                <input type="text" name="todoToAdd" placeholder="new task name" onChange={this.handleChange} value={this.state.todoToAdd} />
+
+                <button type="submit" name="Add" onClick={() => this.props.addTodo(this.state.todoToAdd)}>Add</button>
 
                 <br />
+
+                <p className="inputDescription">Clear Completed Tasks</p>
                 
-                <button name="Clear Completed" onClick={this.props.removeCompleted}>Clear Completed</button>
+                <button name="clear" onClick={this.props.removeCompleted}>Clear</button>
+
+                <br />
+
+                <p className="inputDescription">Filter Tasks</p>
+
+                <input type="text" name="filterText" placeholder="text to filter by" onChange={this.handleChange} value={this.state.filterText} />
+
+                <button name="filter" onClick={() => this.props.filterTasks(this.state.filterText)}>Filter</button>
+
+                
 
             </form>
 

@@ -2,13 +2,7 @@ import React from "react";
 
 class Todo extends React.Component {
 
-    constructor() {
-        super();
-    }
-
     render() {
-
-        console.log(this.props.todoItem);
 
         return (
             <div className="todoItem" key={this.props.todoItem.id} id={"task" + this.props.todoItem.id} onClick={() => this.props.toggleDone(this.props.todoItem.id)}>

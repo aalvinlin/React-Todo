@@ -24,6 +24,16 @@ body {
     width: 25vw;
 }
 
+@media (max-width: 1000px) {
+    .todoListContainer {
+        width: 90vw;
+    }
+
+    .todoList {
+        width: 50vw;
+    }
+}
+
 h1 {
     color: #990099;
 }
@@ -84,4 +94,27 @@ input, button {
     margin: 0.5rem auto;
 
     box-shadow: 2px 2px 0px #666666;
+}
+
+input:active, input:hover {
+    color: white;
+}
+
+button {
+    cursor: pointer;
+
+    background-color: #663366
+}
+
+button:active, button:hover {
+    color: white;
+    background-color: #996699;
+
+}
+
+.inputDescription {
+    text-align: center;
+
+    font-weight: bold;
+    font-size: 1.25rem;
 }

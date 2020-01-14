@@ -3,10 +3,6 @@ import Todo from "./Todo";
 
 class TodoList extends React.Component {
 
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             this.props.todoList.map(todo =>
